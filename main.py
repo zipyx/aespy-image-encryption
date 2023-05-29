@@ -1,5 +1,8 @@
 # References
+# https://pycryptodome.readthedocs.io/en/latest/src/examples.html
+# https://pycryptodome.readthedocs.io/en/latest/src/cipher/classic.html#ecb-mode
 # https://pycryptodome.readthedocs.io/en/latest/src/cipher/classic.html#cbc-mode
+# https://pycryptodome.readthedocs.io/en/latest/src/cipher/classic.html#cfb-mode
 # https://stackoverflow.com/questions/61420893/python-3-encrypt-and-decrypt-image-using-aes
 # https://stackoverflow.com/questions/41980931/image-encryption-and-decryption-using-pycrypto
 
@@ -18,14 +21,14 @@ def main():
     -> file_exists: bool
     """
 
-    key = b"770A8A65DA156D24EE2A093277530142"
+    # key = b"770A8A65DA156D24EE2A093277530142"
     keyHex = "770A8A65DA156D24EE2A093277530142"
     keyToByteArray = bytearray.fromhex(keyHex)
-    keyToHex = bytes.fromhex(keyHex)
+    key = bytes.fromhex(keyHex)
 
     print("[+] Key [Hex]:", keyHex)
     print("[+] Key [ByteArray]:", keyToByteArray)
-    print("[+] Key [FromHex]:", keyToHex)
+    print("[+] Key [FromHex]:", key)
 
     file_name = "Image-Assignment2.bmp"
     file_exists = os.path.exists(file_name)
@@ -34,9 +37,9 @@ def main():
         start_time = time.time()
         print("[+] File exists... starting encryption")
 
-        encrypt_file_using_aes_ecb(file_name, keyToHex)
-        encrypt_file_using_aes_cbc(file_name, keyToHex)
-        encrypt_file_using_aes_cfb(file_name, keyToHex)
+        encrypt_file_using_aes_ecb(file_name, key)
+        encrypt_file_using_aes_cbc(file_name, key)
+        encrypt_file_using_aes_cfb(file_name, key)
 
         end_time = time.time()
         print("[!] AES Encryption took : ", end_time - start_time)
